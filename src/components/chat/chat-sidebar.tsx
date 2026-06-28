@@ -161,7 +161,7 @@ export function ChatSidebar({
                 className="flex flex-col justify-start items-top text-text-primary"
                 aria-label={t.appName}
               >
-                <Logo className="h-5 w-5 text-text-primary" />
+                <Logo className="h-5 w-5 text-primary" />
               </a>
             </div>
           </div>
