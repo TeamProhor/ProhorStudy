@@ -22,7 +22,7 @@ function IconButton({
       title={title}
       onClick={onClick}
       style={style}
-      className={`w-[30px] h-[30px] flex items-center justify-center rounded-[7px] border-none outline-none cursor-pointer transition-colors duration-[120ms] text-text-secondary hover:bg-bg-hover hover:text-text-primary bg-transparent ${className}`}
+      className={`w-8 h-8 flex items-center justify-center rounded-[7px] border-none outline-none cursor-pointer transition-colors duration-[120ms] text-text-secondary hover:bg-bg-hover hover:text-text-primary bg-transparent ${className}`}
     >
       {children}
     </button>
@@ -50,7 +50,7 @@ export function ChatTopbar({
           style={{ position: "absolute", left: "12px" }}
           onClick={() => setSidebarOpen(true)}
         >
-          <IconMenu width="20" height="20" />
+          <IconMenu className="w-6 h-6" />
         </IconButton>
       )}
       <div className="inline-flex items-center gap-[6px] h-7 px-[10px] rounded-[7px] bg-bg-hover text-[12.5px] font-medium text-text-secondary">
@@ -68,7 +68,7 @@ export function ChatTopbar({
           theme={theme as "light" | "dark"}
           onThemeChange={() => toggleTheme()}
           variant="circle"
-          className="w-[30px] h-[30px] flex items-center justify-center rounded-[7px] border-none outline-none cursor-pointer transition-colors duration-[120ms] text-text-secondary hover:bg-bg-hover hover:text-text-primary bg-transparent"
+          className="w-8 h-8 flex items-center justify-center rounded-[7px] border-none outline-none cursor-pointer transition-colors duration-[120ms] text-text-secondary hover:bg-bg-hover hover:text-text-primary bg-transparent [&_svg]:w-6 [&_svg]:h-6"
         />
         <IconButton
           title={t.account}
@@ -76,7 +76,7 @@ export function ChatTopbar({
             router.push(isIncognito ? "/new" : "/new?incognito=true")
           }
         >
-          <IconIncognito />
+          <IconIncognito className="w-6 h-6" />
         </IconButton>
       </div>
     </div>

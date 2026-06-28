@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import type React from "react";
 import { Suspense, useEffect, useState } from "react";
+import { ChatSettings } from "@/components/chat/chat-settings";
 import { ChatSidebar } from "@/components/chat/chat-sidebar";
 import { ChatTopbar } from "@/components/chat/chat-topbar";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -10,6 +11,7 @@ import { t } from "@/lib/translations/chat";
 
 function ChatLayoutContent({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState("dark");
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const isMobile = useIsMobile();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const searchParams = useSearchParams();
@@ -33,6 +35,7 @@ function ChatLayoutContent({ children }: { children: React.ReactNode }) {
           isMobile={isMobile}
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
+          onOpenSettings={() => setIsSettingsOpen(true)}
         />
       )}
 
@@ -100,6 +103,11 @@ function ChatLayoutContent({ children }: { children: React.ReactNode }) {
           </a>
         </div>
       </div>
+
+      <ChatSettings
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+      />
     </div>
   );
 }

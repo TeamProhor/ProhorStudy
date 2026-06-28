@@ -62,6 +62,7 @@ function SidebarLink({
   active,
   expanded,
   hideWhenCollapsed,
+  onClick,
 }: {
   icon: React.ReactNode;
   text: string;
@@ -69,10 +70,17 @@ function SidebarLink({
   active?: boolean;
   expanded?: boolean;
   hideWhenCollapsed?: boolean;
+  onClick?: (e: React.MouseEvent) => void;
 }) {
   return (
     <a
       href="/"
+      onClick={(e) => {
+        if (onClick) {
+          e.preventDefault();
+          onClick(e);
+        }
+      }}
       className={`flex items-center h-9 rounded-[9px] hover:bg-bg-hover group transition-all duration-[300ms] overflow-hidden shrink-0 mx-[4.4px] ${
         expanded ? "w-[17.4rem] gap-3" : "w-[2.5rem]"
       } ${active ? "bg-bg-hover text-text-primary" : "text-text-secondary hover:text-text-primary"} ${!expanded && hideWhenCollapsed ? "hidden" : ""}`}
@@ -119,10 +127,12 @@ export function ChatSidebar({
   isMobile,
   sidebarOpen,
   setSidebarOpen,
+  onOpenSettings,
 }: {
   isMobile: boolean;
   sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
+  onOpenSettings?: () => void;
 }) {
   return (
     <>
@@ -235,6 +245,7 @@ export function ChatSidebar({
                 icon={<IconCustomize className="w-6 h-6" />}
                 text={t.customize}
                 expanded={sidebarOpen}
+                onClick={onOpenSettings}
               />
             </div>
 
@@ -247,7 +258,7 @@ export function ChatSidebar({
                 </h2>
               </div>
               <SidebarLink
-                icon={<IconArtifacts className="w-5 h-5" />}
+                icon={<IconArtifacts className="w-6 h-6" />}
                 text={t.design}
                 expanded={true}
               />
@@ -287,6 +298,7 @@ export function ChatSidebar({
             >
               <button
                 type="button"
+                onClick={onOpenSettings}
                 className="w-full flex flex-row items-center gap-3 px-2 py-2 rounded-lg hover:bg-bg-hover group transition-colors text-left border-none bg-transparent cursor-pointer overflow-hidden"
               >
                 <div className="flex shrink-0 items-center justify-center rounded-full font-semibold select-none h-8 w-8 text-[14px] bg-primary text-white group-hover:opacity-90 transition-opacity">
@@ -324,6 +336,7 @@ export function ChatSidebar({
               </div>
               <button
                 type="button"
+                onClick={onOpenSettings}
                 className="w-8 h-8 rounded-full border-none outline-none bg-primary text-white text-[14px] font-semibold flex items-center justify-center cursor-pointer font-sans shrink-0"
                 title={t.account}
               >
