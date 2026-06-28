@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { Moon, Sun } from "lucide-react"
 import { flushSync } from "react-dom"
+import { t } from "@/lib/translations/chat"
 
 import { cn } from "@/lib/utils"
 
@@ -268,7 +269,7 @@ export const AnimatedThemeToggler = ({
       {...props}
     >
       {isDark ? <Sun /> : <Moon />}
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">{t.toggleTheme}</span>
     </button>
   )
 }

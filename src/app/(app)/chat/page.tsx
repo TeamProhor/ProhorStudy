@@ -6,6 +6,7 @@ import { ChatMessages } from "@/components/chat/chat-messages";
 import { Logo } from "@/components/ui/logo";
 import { useRealtimeChat } from "@/hooks/use-realtime-chat";
 import { useStickToBottom } from "use-stick-to-bottom";
+import { t } from "@/lib/translations/chat";
 
 export default function ChatPage() {
   const { messages, sendMessage, isThinking } = useRealtimeChat({
@@ -33,7 +34,7 @@ export default function ChatPage() {
             <div className="flex flex-col items-center pt-[10vh] md:pt-[20vh] pb-6 w-full max-w-[672px] mx-auto px-4">
               <div className="font-display text-[1.5rem] md:text-[clamp(1.75rem,1rem+2.5vw,2.4rem)] font-normal leading-[1.4] tracking-[-0.03em] text-text-secondary flex items-center gap-3 mb-7">
                 <Logo className="w-[30px] h-[30px] text-primary shrink-0" />
-                <span>Afternoon, FrostFoe</span>
+                <span>{t.greeting}, FrostFoe</span>
               </div>
 
               <div className="w-full">

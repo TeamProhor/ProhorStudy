@@ -8,6 +8,7 @@ import {
   IconProjects,
 } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/logo";
+import { t } from "@/lib/translations/chat";
 
 function SidebarButton({
   children,
@@ -158,9 +159,9 @@ export function ChatSidebar({
               <a
                 href="#"
                 className="flex flex-col justify-start items-top text-text-primary"
-                aria-label="Home"
+                aria-label={t.appName}
               >
-                <Logo className="h-5 w-[82px] text-text-primary" />
+                <Logo className="h-5 w-5 text-text-primary" />
               </a>
             </div>
           </div>
@@ -170,8 +171,8 @@ export function ChatSidebar({
           >
             <SidebarButton
               isNew
-              title="New chat"
-              label="New chat"
+              title={t.newChat}
+              label={t.newChat}
               expanded={sidebarOpen}
             >
               <IconNewChat className="w-6 h-6" />
@@ -189,19 +190,19 @@ export function ChatSidebar({
               <SidebarLink
                 active
                 icon={<IconChats className="w-6 h-6" />}
-                text="Chats"
+                text={t.chats}
                 expanded={sidebarOpen}
               />
               <SidebarLink
                 icon={<IconProjects className="w-6 h-6" />}
-                text="Projects"
+                text={t.projects}
                 expanded={sidebarOpen}
               />
               <SidebarLink
                 icon={
                   <IconArtifacts className="w-6 h-6" />
                 }
-                text="Artifacts"
+                text={t.artifacts}
                 expanded={sidebarOpen}
               />
               <SidebarLink
@@ -211,15 +212,15 @@ export function ChatSidebar({
                     <IconArtifacts className="w-6 h-6" />
                   </div>
                 }
-                text="Code"
-                badge="Upgrade"
+                text={t.code}
+                badge={t.upgrade}
                 expanded={sidebarOpen}
               />
               <SidebarLink
                 icon={
                   <IconCustomize className="w-6 h-6" />
                 }
-                text="Customize"
+                text={t.customize}
                 expanded={sidebarOpen}
               />
             </div>
@@ -229,33 +230,33 @@ export function ChatSidebar({
             >
               <div className="flex items-center justify-between pb-2 pl-4 text-xs text-text-muted">
                 <h2 className="font-semibold hover:text-text-secondary transition-colors cursor-pointer">
-                  Products
+                  {t.products}
                 </h2>
               </div>
               <SidebarLink
                 icon={<IconArtifacts className="w-5 h-5" />}
-                text="Design"
+                text={t.design}
                 expanded={true}
               />
 
               <div className="mt-4 w-full">
                 <div className="flex items-center justify-between pb-2 pl-4 text-xs text-text-muted">
                   <h2 className="font-semibold hover:text-text-secondary transition-colors cursor-pointer">
-                    Recents
+                    {t.recents}
                   </h2>
                 </div>
                 <ul className="flex flex-col gap-px pb-4 w-full">
                   <li>
-                    <RecentChat text="Claude.ai chat interface clone" />
+                    <RecentChat text="Claude.ai চ্যাট ইন্টারফেস ক্লোন" />
                   </li>
                   <li>
-                    <RecentChat text="Tailwind browser clone with Phosphor icons" />
+                    <RecentChat text="Phosphor আইকনসহ Tailwind ব্রাউজার ক্লোন" />
                   </li>
                   <li>
-                    <RecentChat text="UI/UX polish and refinement" />
+                    <RecentChat text="UI/UX পলিশ এবং পরিমার্জন" />
                   </li>
                   <li>
-                    <RecentChat text="Code refactoring and cleanup improvements" />
+                    <RecentChat text="কোড রিফ্যাক্টরিং এবং পরিষ্কার উন্নতি" />
                   </li>
                 </ul>
               </div>
@@ -280,7 +281,7 @@ export function ChatSidebar({
                     FrostFoe
                   </span>
                   <span className="w-full text-xs text-text-muted truncate">
-                    Free plan
+                    {t.freePlan}
                   </span>
                 </div>
                 <div className="relative">
@@ -300,7 +301,7 @@ export function ChatSidebar({
               className={`absolute inset-0 flex flex-col items-center justify-center gap-2 transition-all duration-300 ${!sidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none -translate-y-4"}`}
             >
               <div className="relative">
-                <SidebarButton title="Downloads" expanded={false}>
+                <SidebarButton title={t.downloads} expanded={false}>
                   <IconDownloads className="w-6 h-6" />
                 </SidebarButton>
                 <div className="absolute top-[2px] right-[2px] w-[7px] h-[7px] rounded-full bg-primary before:content-[''] before:absolute before:-inset-[2px] before:rounded-full before:bg-primary before:opacity-40 before:animate-[ping_1.4s_ease-in-out_infinite]"></div>
@@ -308,7 +309,7 @@ export function ChatSidebar({
               <button
                 type="button"
                 className="w-8 h-8 rounded-full border-none outline-none bg-primary text-white text-[14px] font-semibold flex items-center justify-center cursor-pointer font-sans shrink-0"
-                title="Account"
+                title={t.account}
               >
                 F
               </button>

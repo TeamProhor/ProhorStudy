@@ -26,8 +26,10 @@ const fontMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+import { t } from "@/lib/translations/chat";
+
 export const metadata: Metadata = {
-  title: "ProAI",
+  title: t.appName,
   description: "Professional AI Assistant",
 };
 
@@ -38,8 +40,8 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${fontSans.variable} ${fontBengali.variable} ${fontHeading.variable} ${fontMono.variable} h-full antialiased`}
+      lang="bn"
+      className={`${fontBengali.variable} ${fontSans.variable}  ${fontHeading.variable} ${fontMono.variable} h-full antialiased`}
       
     >
       <TooltipProvider>

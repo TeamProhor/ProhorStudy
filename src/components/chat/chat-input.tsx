@@ -6,6 +6,7 @@ import {
   IconStop,
   IconVoice,
 } from "@/components/ui/icons";
+import { t } from "@/lib/translations/chat";
 
 export function ChatInput({
   inputValue,
@@ -19,7 +20,7 @@ export function ChatInput({
   isStreaming?: boolean;
 }) {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("Sonnet 4.6");
+  const [selectedModel, setSelectedModel] = useState(t.modelName);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export function ChatInput({
               onSend();
             }
           }}
-          placeholder="How can I help you today?"
+          placeholder={t.chatInputPlaceholder}
           rows={1}
         ></textarea>
         <div className="flex items-center gap-[6px]">
@@ -62,7 +63,7 @@ export function ChatInput({
               onClick={() => setDropdownOpen(!isDropdownOpen)}
             >
               <span>{selectedModel}</span>
-              <span className="text-text-muted ml-[3px]">Low</span>
+              <span className="text-text-muted ml-[3px]">{t.modelSpeed}</span>
               <IconChevronDown className="opacity-55 ml-0.5" />
             </button>
             {isDropdownOpen && (
@@ -74,15 +75,15 @@ export function ChatInput({
                   type="button"
                   className="flex flex-col gap-[2px] p-[9px_12px] rounded-[7px] cursor-pointer transition-colors duration-100 border-none bg-bg-hover text-left w-full group"
                   onClick={() => {
-                    setSelectedModel("Sonnet 4.6");
+                    setSelectedModel(t.modelName);
                     setDropdownOpen(false);
                   }}
                 >
                   <span className="text-[13.5px] font-medium text-primary">
-                    Claude Sonnet 4.6
+                    {t.modelFullName}
                   </span>
                   <span className="text-[12px] text-text-muted">
-                    Smart, fast, everyday tasks
+                    {t.modelDescription}
                   </span>
                 </button>
               </div>

@@ -29,14 +29,14 @@
   --shadow-input-hover: var(--shadow-input-hover);
   --shadow-input-focus: var(--shadow-input-focus);
 
-  --font-sans: var(--font-sans), var(--font-bengali), system-ui, sans-serif;
-  --font-mono: var(--font-mono), monospace;
-  --font-display: var(--font-heading), "Cormorant Garamond", serif;
+  --font-sans: "Hind Siliguri", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Hind Siliguri", "Cormorant Garamond", serif;
 }
 
 @layer base {
   body {
-    @apply font-sans;
+    font-family: "Hind Siliguri", "Inter", system-ui, sans-serif;
     background-color: var(--bg);
     color: var(--text-primary);
   }

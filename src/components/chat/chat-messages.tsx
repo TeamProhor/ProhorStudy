@@ -1,6 +1,7 @@
 "use client";
 
 import { Logo } from "@/components/ui/logo";
+import { t } from "@/lib/translations/chat";
 import { Streamdown } from "streamdown";
 import { code } from "@streamdown/code";
 import { math } from "@streamdown/math";
@@ -51,7 +52,7 @@ export function ChatMessages({ messages, isThinking }: { messages: any[]; isThin
           >
             <div className="flex gap-2 md:gap-[10px] items-start">
               <Logo className="w-[28px] h-[28px] shrink-0 text-primary mt-[2px]" />
-              <div className="flex-1 min-w-0 flex items-center h-[28px] text-text-secondary text-[14px]">
+              <div className="flex-1 min-w-0 flex items-center h-[28px] text-text-secondary text-[14px]" aria-label={t.thinking}>
                 <div className="flex gap-1 items-center">
                   <motion.div
                     className="w-2 h-2 rounded-full bg-text-secondary/50"

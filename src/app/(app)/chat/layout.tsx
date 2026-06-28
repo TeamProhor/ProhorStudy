@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ChatSidebar } from "@/components/chat/chat-sidebar";
 import { ChatTopbar } from "@/components/chat/chat-topbar";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { t } from "@/lib/translations/chat";
 
 export default function ChatLayout({
   children,
@@ -50,7 +51,7 @@ export default function ChatLayout({
             href="#"
             className="text-text-muted underline underline-offset-2 hover:text-text-secondary transition-colors"
           >
-            Claude can make mistakes. Check important info.
+            {t.disclaimer}
           </a>
         </div>
       </div>

@@ -5,6 +5,7 @@ import {
   IconPlan,
   IconWrite,
 } from "@/components/ui/icons";
+import { t } from "@/lib/translations/chat";
 
 function ChatChip({
   text,
@@ -30,10 +31,10 @@ export function ChatChips({
 }) {
   return (
     <div className="flex flex-wrap justify-center gap-[7px] mt-[10px] md:mt-[14px]">
-      <ChatChip onClick={() => setInputValue("Write a Python function that ")} icon={<IconCode />} text="Code" />
-      <ChatChip onClick={() => setInputValue("Write an essay about ")} icon={<IconWrite />} text="Write" />
-      <ChatChip onClick={() => setInputValue("Explain how ")} icon={<IconLearn />} text="Learn" />
-      <ChatChip onClick={() => setInputValue("Help me plan ")} icon={<IconPlan />} text="Life stuff" />
+      <ChatChip onClick={() => setInputValue(t.chipCodePrompt)} icon={<IconCode />} text={t.chipCode} />
+      <ChatChip onClick={() => setInputValue(t.chipWritePrompt)} icon={<IconWrite />} text={t.chipWrite} />
+      <ChatChip onClick={() => setInputValue(t.chipLearnPrompt)} icon={<IconLearn />} text={t.chipLearn} />
+      <ChatChip onClick={() => setInputValue(t.chipPlanPrompt)} icon={<IconPlan />} text={t.chipPlan} />
     </div>
   );
 }
