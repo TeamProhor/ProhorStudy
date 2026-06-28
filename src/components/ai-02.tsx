@@ -65,16 +65,24 @@ const MODELS = [
   },
 ];
 
-export default function Ai02() {
+interface Ai02Props {
+  onSubmit?: (text: string) => void;
+}
+
+export default function Ai02({ onSubmit }: Ai02Props) {
   const [inputValue, setInputValue] = useState("");
   const [selectedModel, setSelectedModel] = useState(MODELS[0]);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const handlePromptClick = (prompt: string) => {
     if (inputRef.current) {
-      inputRef.current.value = prompt;
-      setInputValue(prompt);
-      inputRef.current.focus();
+      if (onSubmit) {
+        onSubmit(prompt);
+      } else {
+        inputRef.current.value = prompt;
+        setInputValue(prompt);
+        inputRef.current.focus();
+      }
     }
   };
 
@@ -109,6 +117,15 @@ export default function Ai02() {
             ref={inputRef}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                if (inputValue.trim() && onSubmit) {
+                  onSubmit(inputValue);
+                  setInputValue("");
+                }
+              }
+            }}
             placeholder="Ask anything"
             className="w-full border-0 p-3 transition-[padding] duration-200 ease-in-out min-h-[48.4px] outline-none text-[16px] text-foreground resize-none shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 bg-transparent! whitespace-pre-wrap break-words"
           />
@@ -176,6 +193,12 @@ export default function Ai02() {
               )}
               disabled={!inputValue}
               aria-label="Send message"
+              onClick={() => {
+                if (inputValue.trim() && onSubmit) {
+                  onSubmit(inputValue);
+                  setInputValue("");
+                }
+              }}
             >
               <IconArrowUp className="h-4 w-4 text-primary-foreground" />
             </Button>

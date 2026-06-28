@@ -14,4 +14,7 @@ Always keep the following files in mind when working on this project. You must a
 - `CONTEXT.md`: Current session state and immediate priorities. (Update as tasks are completed and new priorities emerge).
 - `GEMINI.md`: Persistent behavioral instructions.
 - `PRODUCT.md` and `DESIGN.md`: Product strategy and visual design system.
+
+Lastly, don't use any comments in my web app!
+
 <!-- END:project-context-rules -->
