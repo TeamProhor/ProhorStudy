@@ -18,7 +18,15 @@ function SidebarButton({
   title,
   label,
   expanded,
-}: any) {
+}: {
+  children: React.ReactNode;
+  active?: boolean;
+  isNew?: boolean;
+  onClick?: () => void;
+  title?: string;
+  label?: string;
+  expanded?: boolean;
+}) {
   return (
     <button
       type="button"
@@ -33,7 +41,7 @@ function SidebarButton({
             ? "text-text-primary bg-bg-hover"
             : "text-text-secondary hover:bg-bg-hover hover:text-text-primary bg-transparent"
       }`}
-      style={{ paddingLeft: '8px' }}
+      style={{ paddingLeft: "8px" }}
     >
       <div className="shrink-0 flex items-center justify-center w-6 h-6">
         {children}
@@ -54,14 +62,21 @@ function SidebarLink({
   active,
   expanded,
   hideWhenCollapsed,
-}: any) {
+}: {
+  icon: React.ReactNode;
+  text: string;
+  badge?: string;
+  active?: boolean;
+  expanded?: boolean;
+  hideWhenCollapsed?: boolean;
+}) {
   return (
     <a
-      href="#"
+      href="/"
       className={`flex items-center h-9 rounded-[9px] hover:bg-bg-hover group transition-all duration-[300ms] overflow-hidden shrink-0 mx-[4.4px] ${
         expanded ? "w-[17.4rem] gap-3" : "w-[2.5rem]"
       } ${active ? "bg-bg-hover text-text-primary" : "text-text-secondary hover:text-text-primary"} ${!expanded && hideWhenCollapsed ? "hidden" : ""}`}
-      style={{ paddingLeft: '8px' }}
+      style={{ paddingLeft: "8px" }}
     >
       <div className="flex size-6 shrink-0 items-center justify-center">
         {icon}
@@ -85,14 +100,16 @@ function SidebarLink({
 function RecentChat({ text }: { text: string }) {
   return (
     <a
-      href="#"
+      href="/"
       className="w-[17.4rem] mx-[4.4px] flex items-center gap-3 px-3 py-1.5 h-9 rounded-[9px] hover:bg-bg-hover group text-text-secondary hover:text-text-primary transition-colors relative overflow-hidden shrink-0"
     >
       <span className="text-sm flex-1 text-left truncate relative z-10 group-hover:pr-6">
         {text}
       </span>
       <div className="absolute right-1 opacity-0 group-hover:opacity-100 bg-gradient-to-l from-bg-hover to-transparent pl-4 pr-1 h-full flex items-center justify-center z-20">
-        <button type="button" className="hover:text-primary">...</button>
+        <button type="button" className="hover:text-primary">
+          ...
+        </button>
       </div>
     </a>
   );
@@ -110,12 +127,12 @@ export function ChatSidebar({
   return (
     <>
       {isMobile && sidebarOpen && (
-        <div
-          role="presentation"
-          className="absolute inset-0 bg-black/50 z-[90] transition-opacity duration-300"
+        <button
+          type="button"
+          aria-label="Close sidebar"
+          className="absolute inset-0 bg-black/50 z-[90] transition-opacity duration-300 border-none outline-none block w-full"
           onClick={() => setSidebarOpen(false)}
-          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setSidebarOpen(false); }}
-        ></div>
+        ></button>
       )}
 
       <nav
@@ -157,7 +174,7 @@ export function ChatSidebar({
               className={`flex items-center transition-all duration-300 absolute left-0 ${sidebarOpen ? "opacity-100 pl-4 top-3.5" : "opacity-0 -translate-x-4 pointer-events-none top-3.5"}`}
             >
               <a
-                href="#"
+                href="/"
                 className="flex flex-col justify-start items-top text-text-primary"
                 aria-label={t.appName}
               >
@@ -199,9 +216,7 @@ export function ChatSidebar({
                 expanded={sidebarOpen}
               />
               <SidebarLink
-                icon={
-                  <IconArtifacts className="w-6 h-6" />
-                }
+                icon={<IconArtifacts className="w-6 h-6" />}
                 text={t.artifacts}
                 expanded={sidebarOpen}
               />
@@ -217,9 +232,7 @@ export function ChatSidebar({
                 expanded={sidebarOpen}
               />
               <SidebarLink
-                icon={
-                  <IconCustomize className="w-6 h-6" />
-                }
+                icon={<IconCustomize className="w-6 h-6" />}
                 text={t.customize}
                 expanded={sidebarOpen}
               />
@@ -272,7 +285,10 @@ export function ChatSidebar({
             <div
               className={`absolute inset-0 flex items-center border-t-[0.5px] border-border-soft p-2 transition-all duration-300 ${sidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none translate-y-4"}`}
             >
-              <button type="button" className="w-full flex flex-row items-center gap-3 px-2 py-2 rounded-lg hover:bg-bg-hover group transition-colors text-left border-none bg-transparent cursor-pointer overflow-hidden">
+              <button
+                type="button"
+                className="w-full flex flex-row items-center gap-3 px-2 py-2 rounded-lg hover:bg-bg-hover group transition-colors text-left border-none bg-transparent cursor-pointer overflow-hidden"
+              >
                 <div className="flex shrink-0 items-center justify-center rounded-full font-semibold select-none h-8 w-8 text-[14px] bg-primary text-white group-hover:opacity-90 transition-opacity">
                   F
                 </div>

@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter, JetBrains_Mono, Hind_Siliguri } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Hind_Siliguri,
+  Inter,
+  JetBrains_Mono,
+} from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "streamdown/styles.css";
 import "./globals.css";
@@ -42,10 +47,11 @@ export default function RootLayout({
     <html
       lang="bn"
       className={`${fontBengali.variable} ${fontSans.variable}  ${fontHeading.variable} ${fontMono.variable} h-full antialiased`}
-      
     >
       <TooltipProvider>
-        <body suppressHydrationWarning className="min-h-full flex flex-col">{children}</body>
+        <body suppressHydrationWarning className="min-h-full flex flex-col">
+          {children}
+        </body>
       </TooltipProvider>
     </html>
   );

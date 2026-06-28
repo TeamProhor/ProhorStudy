@@ -1,11 +1,6 @@
-import React from "react";
-import {
-  IconIncognito,
-  IconMenu,
-  IconMoon,
-  IconSun,
-} from "@/components/ui/icons";
+import { useRouter } from "next/navigation";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
+import { IconIncognito, IconMenu } from "@/components/ui/icons";
 import { t } from "@/lib/translations/chat";
 
 function IconButton({
@@ -14,7 +9,13 @@ function IconButton({
   title,
   style,
   className = "",
-}: any) {
+}: {
+  children: React.ReactNode;
+  onClick?: () => void;
+  title?: string;
+  style?: React.CSSProperties;
+  className?: string;
+}) {
   return (
     <button
       type="button"
@@ -30,17 +31,18 @@ function IconButton({
 
 export function ChatTopbar({
   isMobile,
-  sidebarOpen,
   setSidebarOpen,
   theme,
   toggleTheme,
+  isIncognito,
 }: {
   isMobile: boolean;
-  sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
   theme: string;
   toggleTheme: () => void;
+  isIncognito: boolean;
 }) {
+  const router = useRouter();
   return (
     <div className="h-[44px] flex items-center justify-center relative shrink-0 md:px-0 px-3">
       {isMobile && (
@@ -55,7 +57,7 @@ export function ChatTopbar({
         {t.freePlan}
         <div className="w-[3px] h-[3px] rounded-full bg-text-muted opacity-40"></div>
         <a
-          href="#"
+          href="/"
           className="text-text-secondary underline underline-offset-[3px] decoration-text-secondary/35 hover:text-text-primary"
         >
           {t.upgrade}
@@ -68,7 +70,12 @@ export function ChatTopbar({
           variant="circle"
           className="w-[30px] h-[30px] flex items-center justify-center rounded-[7px] border-none outline-none cursor-pointer transition-colors duration-[120ms] text-text-secondary hover:bg-bg-hover hover:text-text-primary bg-transparent"
         />
-        <IconButton title={t.account}>
+        <IconButton
+          title={t.account}
+          onClick={() =>
+            router.push(isIncognito ? "/new" : "/new?incognito=true")
+          }
+        >
           <IconIncognito />
         </IconButton>
       </div>

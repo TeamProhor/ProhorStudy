@@ -1,9 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-
-import { createClient } from "@/lib/supabase/client";
 import { getRandomAIResponse } from "@/lib/responses";
+import { createClient } from "@/lib/supabase/client";
 
 interface UseRealtimeChatProps {
   roomName: string;
@@ -39,7 +38,9 @@ export function useRealtimeChat({ roomName, username }: UseRealtimeChatProps) {
           const exists = current.find((m) => m.id === payload.payload.id);
           if (exists) {
             return current.map((m) =>
-              m.id === payload.payload.id ? payload.payload as ChatMessage : m
+              m.id === payload.payload.id
+                ? (payload.payload as ChatMessage)
+                : m,
             );
           }
           return [...current, payload.payload as ChatMessage];
@@ -85,46 +86,53 @@ export function useRealtimeChat({ roomName, username }: UseRealtimeChatProps) {
       setIsThinking(true);
 
       // Simulate an AI response after a short delay
-      setTimeout(async () => {
-        setIsThinking(false);
-        const fullResponse = getRandomAIResponse();
-        const aiMessageId = crypto.randomUUID();
-        
-        let currentContent = "";
-        
-        const aiMessage: ChatMessage = {
-          id: aiMessageId,
-          content: "",
-          user: {
-            name: "AI Assistant",
-          },
-          createdAt: new Date().toISOString(),
-        };
+      setTimeout(
+        async () => {
+          setIsThinking(false);
+          const fullResponse = getRandomAIResponse();
+          const aiMessageId = crypto.randomUUID();
 
-        // Add empty message initially
-        setMessages((current) => [...current, aiMessage]);
+          let currentContent = "";
 
-        // Simulate streaming
-        const chunks = fullResponse.match(/[\s\S]{1,2}/g) || [fullResponse];
-        
-        for (let i = 0; i < chunks.length; i++) {
-          await new Promise((resolve) => setTimeout(resolve, 20 + Math.random() * 30));
-          currentContent += chunks[i];
-          
-          setMessages((current) => 
-            current.map((msg) => 
-              msg.id === aiMessageId ? { ...msg, content: currentContent } : msg
-            )
-          );
-        }
+          const aiMessage: ChatMessage = {
+            id: aiMessageId,
+            content: "",
+            user: {
+              name: "AI Assistant",
+            },
+            createdAt: new Date().toISOString(),
+          };
 
-        // Broadcast the final completed message
-        await channel.send({
-          type: "broadcast",
-          event: EVENT_MESSAGE_TYPE,
-          payload: { ...aiMessage, content: currentContent },
-        });
-      }, 1000 + Math.random() * 1000); // 1-2 second delay
+          // Add empty message initially
+          setMessages((current) => [...current, aiMessage]);
+
+          // Simulate streaming
+          const chunks = fullResponse.match(/[\s\S]{1,2}/g) || [fullResponse];
+
+          for (let i = 0; i < chunks.length; i++) {
+            await new Promise((resolve) =>
+              setTimeout(resolve, 20 + Math.random() * 30),
+            );
+            currentContent += chunks[i];
+
+            setMessages((current) =>
+              current.map((msg) =>
+                msg.id === aiMessageId
+                  ? { ...msg, content: currentContent }
+                  : msg,
+              ),
+            );
+          }
+
+          // Broadcast the final completed message
+          await channel.send({
+            type: "broadcast",
+            event: EVENT_MESSAGE_TYPE,
+            payload: { ...aiMessage, content: currentContent },
+          });
+        },
+        1000 + Math.random() * 1000,
+      ); // 1-2 second delay
     },
     [channel, isConnected, username],
   );

@@ -67,26 +67,30 @@ export function ChatInput({
               <IconChevronDown className="opacity-55 ml-0.5" />
             </button>
             {isDropdownOpen && (
-              <div
-                className="absolute bottom-[calc(100%+6px)] left-0 bg-bg-elevated border-[0.5px] border-border rounded-[10px] p-[6px] min-w-[240px] z-[100] shadow-[0_8px_32px_rgba(0,0,0,0.22)] block"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button
-                  type="button"
-                  className="flex flex-col gap-[2px] p-[9px_12px] rounded-[7px] cursor-pointer transition-colors duration-100 border-none bg-bg-hover text-left w-full group"
-                  onClick={() => {
-                    setSelectedModel(t.modelName);
-                    setDropdownOpen(false);
-                  }}
+              <>
+                {/* biome-ignore lint/a11y/noStaticElementInteractions: dropdown */}
+                {/* biome-ignore lint/a11y/useKeyWithClickEvents: dropdown */}
+                <div
+                  className="absolute bottom-[calc(100%+6px)] left-0 bg-bg-elevated border-[0.5px] border-border rounded-[10px] p-[6px] min-w-[240px] z-[100] shadow-[0_8px_32px_rgba(0,0,0,0.22)] block"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  <span className="text-[13.5px] font-medium text-primary">
-                    {t.modelFullName}
-                  </span>
-                  <span className="text-[12px] text-text-muted">
-                    {t.modelDescription}
-                  </span>
-                </button>
-              </div>
+                  <button
+                    type="button"
+                    className="flex flex-col gap-[2px] p-[9px_12px] rounded-[7px] cursor-pointer transition-colors duration-100 border-none bg-bg-hover text-left w-full group"
+                    onClick={() => {
+                      setSelectedModel(t.modelName);
+                      setDropdownOpen(false);
+                    }}
+                  >
+                    <span className="text-[13.5px] font-medium text-primary">
+                      {t.modelFullName}
+                    </span>
+                    <span className="text-[12px] text-text-muted">
+                      {t.modelDescription}
+                    </span>
+                  </button>
+                </div>
+              </>
             )}
           </div>
           <button

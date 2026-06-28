@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
+import { useStickToBottom } from "use-stick-to-bottom";
 import { ChatChips } from "@/components/chat/chat-chips";
 import { ChatInput } from "@/components/chat/chat-input";
 import { ChatMessages } from "@/components/chat/chat-messages";
 import { Logo } from "@/components/ui/logo";
 import { useRealtimeChat } from "@/hooks/use-realtime-chat";
-import { useStickToBottom } from "use-stick-to-bottom";
 import { t } from "@/lib/translations/chat";
 
 export default function ChatPage() {

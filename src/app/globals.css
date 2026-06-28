@@ -151,20 +151,20 @@
   overflow-x: auto;
 }
 .msg-assistant-content [data-streamdown="code-block"] {
-  background: var(--bg-soft) !important;
-  border: 0.5px solid var(--border) !important;
-  border-radius: 10px !important;
-  margin: 10px 0 !important;
-  padding: 0 !important;
+  background: var(--bg-soft);
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 0;
 }
 .msg-assistant-content [data-streamdown="code-block-body"] {
-  background: transparent !important;
-  border: none !important;
-  padding: 14px 16px !important;
+  background: transparent;
+  border: none;
+  padding: 14px 16px;
 }
 .msg-assistant-content [data-streamdown="code-block-actions"] {
-  background: transparent !important;
-  border: none !important;
+  background: transparent;
+  border: none;
 }
 .msg-assistant-content pre code {
   background: none;
@@ -274,8 +274,4 @@
   vertical-align: text-bottom;
   animation: blink 0.9s step-end infinite;
   margin-left: 2px;
-}
-::view-transition-old(root), ::view-transition-new(root) {
-    animation: none;
-    mix-blend-mode: normal;
 }
