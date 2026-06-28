@@ -1,19 +1,20 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { ChatChips } from "@/components/chat/chat-chips";
 import { ChatInput } from "@/components/chat/chat-input";
 import { ChatMessages } from "@/components/chat/chat-messages";
-import { IconClaudeMark } from "@/components/ui/icons";
+import { Logo } from "@/components/ui/logo";
 import { useRealtimeChat } from "@/hooks/use-realtime-chat";
+import { useStickToBottom } from "use-stick-to-bottom";
 
 export default function ChatPage() {
-  const { messages, sendMessage } = useRealtimeChat({
+  const { messages, sendMessage, isThinking } = useRealtimeChat({
     roomName: "claude-clone-session",
     username: "User",
   });
 
   const [inputValue, setInputValue] = useState("");
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const { scrollRef, contentRef } = useStickToBottom();
 
   const handleSend = () => {
     if (!inputValue.trim()) return;
@@ -21,40 +22,36 @@ export default function ChatPage() {
     setInputValue("");
   };
 
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, []);
-
   return (
     <>
       <div
         className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col items-center [scrollbar-width:thin] [scrollbar-color:var(--scrollbar)_transparent]"
         ref={scrollRef}
       >
-        {messages.length === 0 ? (
-          <div className="flex flex-col items-center pt-[10vh] md:pt-[20vh] pb-6 w-full max-w-[672px] mx-auto px-4">
-            <div className="font-display text-[1.5rem] md:text-[clamp(1.75rem,1rem+2.5vw,2.4rem)] font-normal leading-[1.4] tracking-[-0.03em] text-text-secondary flex items-center gap-3 mb-7">
-              <IconClaudeMark className="w-[30px] h-[30px] text-primary shrink-0" />
-              <span>Afternoon, FrostFoe</span>
-            </div>
+        <div ref={contentRef} className="w-full flex flex-col items-center">
+          {messages.length === 0 ? (
+            <div className="flex flex-col items-center pt-[10vh] md:pt-[20vh] pb-6 w-full max-w-[672px] mx-auto px-4">
+              <div className="font-display text-[1.5rem] md:text-[clamp(1.75rem,1rem+2.5vw,2.4rem)] font-normal leading-[1.4] tracking-[-0.03em] text-text-secondary flex items-center gap-3 mb-7">
+                <Logo className="w-[30px] h-[30px] text-primary shrink-0" />
+                <span>Afternoon, FrostFoe</span>
+              </div>
 
-            <div className="w-full">
-              <ChatInput
-                inputValue={inputValue}
-                setInputValue={setInputValue}
-                onSend={handleSend}
-                isStreaming={false}
-              />
-            </div>
+              <div className="w-full">
+                <ChatInput
+                  inputValue={inputValue}
+                  setInputValue={setInputValue}
+                  onSend={handleSend}
+                  isStreaming={false}
+                />
+              </div>
 
-            {/* Chips */}
-            <ChatChips setInputValue={setInputValue} />
-          </div>
-        ) : (
-          <ChatMessages messages={messages} />
-        )}
+              {/* Chips */}
+              <ChatChips setInputValue={setInputValue} />
+            </div>
+          ) : (
+            <ChatMessages messages={messages} isThinking={isThinking} />
+          )}
+        </div>
       </div>
 
       {messages.length > 0 && (

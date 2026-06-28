@@ -29,9 +29,9 @@
   --shadow-input-hover: var(--shadow-input-hover);
   --shadow-input-focus: var(--shadow-input-focus);
 
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-  --font-display: var(--font-display);
+  --font-sans: var(--font-sans), var(--font-bengali), system-ui, sans-serif;
+  --font-mono: var(--font-mono), monospace;
+  --font-display: var(--font-heading), "Cormorant Garamond", serif;
 }
 
 @layer base {
@@ -59,9 +59,6 @@
   --hairline: #e6dfd8;
   --on-dark: #faf9f5;
   --on-dark-soft: #a09d96;
-  --font-display: "Cormorant Garamond", "Times New Roman", serif;
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
   --sidebar-w: 3.05rem;
   /* Theme vars */
   --bg: #181715;
@@ -152,6 +149,22 @@
   padding: 14px 16px;
   margin: 10px 0;
   overflow-x: auto;
+}
+.msg-assistant-content [data-streamdown="code-block"] {
+  background: var(--bg-soft) !important;
+  border: 0.5px solid var(--border) !important;
+  border-radius: 10px !important;
+  margin: 10px 0 !important;
+  padding: 0 !important;
+}
+.msg-assistant-content [data-streamdown="code-block-body"] {
+  background: transparent !important;
+  border: none !important;
+  padding: 14px 16px !important;
+}
+.msg-assistant-content [data-streamdown="code-block-actions"] {
+  background: transparent !important;
+  border: none !important;
 }
 .msg-assistant-content pre code {
   background: none;
@@ -261,4 +274,8 @@
   vertical-align: text-bottom;
   animation: blink 0.9s step-end infinite;
   margin-left: 2px;
+}
+::view-transition-old(root), ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
 }

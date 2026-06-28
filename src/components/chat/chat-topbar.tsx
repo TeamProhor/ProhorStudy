@@ -1,17 +1,26 @@
+import React from "react";
 import {
   IconIncognito,
   IconMenu,
   IconMoon,
   IconSun,
 } from "@/components/ui/icons";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
-export function IconButton({ children, onClick, title, style }: any) {
+function IconButton({
+  children,
+  onClick,
+  title,
+  style,
+  className = "",
+}: any) {
   return (
     <button
+      type="button"
       title={title}
       onClick={onClick}
       style={style}
-      className="w-[30px] h-[30px] flex items-center justify-center rounded-[7px] border-none outline-none cursor-pointer transition-colors duration-[120ms] text-text-secondary hover:bg-bg-hover hover:text-text-primary bg-transparent"
+      className={`w-[30px] h-[30px] flex items-center justify-center rounded-[7px] border-none outline-none cursor-pointer transition-colors duration-[120ms] text-text-secondary hover:bg-bg-hover hover:text-text-primary bg-transparent ${className}`}
     >
       {children}
     </button>
@@ -20,11 +29,13 @@ export function IconButton({ children, onClick, title, style }: any) {
 
 export function ChatTopbar({
   isMobile,
+  sidebarOpen,
   setSidebarOpen,
   theme,
   toggleTheme,
 }: {
   isMobile: boolean;
+  sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
   theme: string;
   toggleTheme: () => void;
@@ -50,9 +61,12 @@ export function ChatTopbar({
         </a>
       </div>
       <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-        <IconButton title="Toggle theme" onClick={toggleTheme}>
-          {theme === "light" ? <IconSun /> : <IconMoon />}
-        </IconButton>
+        <AnimatedThemeToggler
+          theme={theme as "light" | "dark"}
+          onThemeChange={() => toggleTheme()}
+          variant="circle"
+          className="w-[30px] h-[30px] flex items-center justify-center rounded-[7px] border-none outline-none cursor-pointer transition-colors duration-[120ms] text-text-secondary hover:bg-bg-hover hover:text-text-primary bg-transparent"
+        />
         <IconButton title="Incognito">
           <IconIncognito />
         </IconButton>

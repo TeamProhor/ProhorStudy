@@ -36,6 +36,7 @@ export default function ChatLayout({
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden bg-bg text-text-primary transition-colors duration-200">
         <ChatTopbar
           isMobile={isMobile}
+          sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
           theme={theme}
           toggleTheme={toggleTheme}

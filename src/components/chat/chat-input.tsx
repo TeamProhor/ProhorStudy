@@ -48,6 +48,7 @@ export function ChatInput({
         ></textarea>
         <div className="flex items-center gap-[6px]">
           <button
+            type="button"
             className="w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center border-none bg-transparent text-text-secondary cursor-pointer transition-colors duration-[120ms] hover:bg-bg-hover hover:text-text-primary"
             title="Add files"
           >
@@ -56,6 +57,7 @@ export function ChatInput({
           <div className="flex-1"></div>
           <div className="relative">
             <button
+              type="button"
               className="inline-flex items-center gap-1 h-[30px] px-[6px] md:px-[10px] rounded-lg border-none bg-transparent text-text-secondary font-sans text-[12px] md:text-[13.5px] font-medium cursor-pointer whitespace-nowrap transition-colors duration-[120ms] hover:bg-bg-hover relative"
               onClick={() => setDropdownOpen(!isDropdownOpen)}
             >
@@ -69,6 +71,7 @@ export function ChatInput({
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
+                  type="button"
                   className="flex flex-col gap-[2px] p-[9px_12px] rounded-[7px] cursor-pointer transition-colors duration-100 border-none bg-bg-hover text-left w-full group"
                   onClick={() => {
                     setSelectedModel("Sonnet 4.6");
@@ -86,12 +89,14 @@ export function ChatInput({
             )}
           </div>
           <button
+            type="button"
             className="w-auto px-[6px] h-7 md:h-8 rounded-lg flex items-center justify-center border-none bg-transparent text-text-secondary cursor-pointer transition-colors duration-[120ms] hover:bg-bg-hover hover:text-text-primary"
             title="Voice mode"
           >
             <IconVoice />
           </button>
           <button
+            type="button"
             className={`w-8 h-8 rounded-[9px] flex items-center justify-center border-none cursor-pointer shrink-0 transition-all duration-[120ms] ${isStreaming ? "bg-bg-hover-strong text-text-secondary hover:bg-bg-hover hover:text-text-primary" : "bg-primary text-white hover:bg-primary-active disabled:opacity-40 disabled:cursor-default"}`}
             onClick={onSend}
             disabled={!inputValue.trim()}
