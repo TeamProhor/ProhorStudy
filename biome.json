@@ -7,7 +7,20 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!node_modules", "!.next", "!dist", "!build"]
+    "includes": [
+      "**",
+      "!node_modules",
+      "!.next",
+      "!dist",
+      "!build",
+      "!src/components/ui",
+      "!doctor.config.mjs",
+      "!src/hooks/use-mobile.ts",
+      "!src/lib/supabase",
+      "!src/lib/utils.ts",
+      "!src/proxy.ts",
+      "!.agents"
+    ]
   },
   "formatter": {
     "enabled": true,

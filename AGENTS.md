@@ -7,8 +7,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 <!-- END:nextjs-agent-rules -->
 
 <!-- BEGIN:project-context-rules -->
+
 # Core Context Files
+
 Always keep the following files in mind when working on this project. You must actively READ these files when you are unsure about current state, and you must PROACTIVELY UPDATE them as the project evolves, decisions are made, or context changes:
+
 - `SKILLS.md`: Task-specific expertise and technical conventions. (Update when new tech or patterns are introduced).
 - `MEMORY.md`: Past decisions, brand guidelines, and mistakes to avoid. (Update when we make a major architecture/design decision or solve a hard bug).
 - `CONTEXT.md`: Current session state and immediate priorities. (Update as tasks are completed and new priorities emerge).
